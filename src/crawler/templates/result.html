@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My test result
+{% endblock %}
+
+{% block body %}
+
+<div class="list">
+    {% if result != None %}
+    <div class="results">
+        <table class="tab">
+            <tr>
+                {% for entry in result %}
+                <th>{{ entry}}</th>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+<div id="mapContainer">
+    <div id="map"></div>
+</div>
+
+{% endblock %}

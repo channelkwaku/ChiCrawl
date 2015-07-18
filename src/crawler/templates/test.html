@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}ChiCrawl{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/static/style.css' %}" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAl6V4Mo35tEtSNonOAUiHN7XxjSdBcj2c"></script>
+    <script type="text/javascript" src="{% static '/static/map.js' %}"></script>
+</head>
+<body>
+    <div class="frame">
+        <form method="get">
+            {% csrf_token %}
+            <table class="form">
+                {{ form }}
+            </table>
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+
+    {% if args %}
+        <div class="args">
+            <pre>{{ args }}</pre>
+        </div>
+    {% endif %}
+
+    <div class="frame">
+        {% if result != None %}
+            <div class="results">
+                <ul class="list">
+                    {% for entry in result %}
+                    <li>{{ entry }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

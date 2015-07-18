@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<!--
+<div id="header">
+    <h1>Crawling Chicago Bars</h1>
+</div>-->
+<!-- Show form -->
+<div class="back">
+<div class="frame">
+    <form method="get">
+        {% csrf_token %}
+        <table class="form">
+            {{ form }}
+        </table>
+        <div class="submit">
+            <input type="submit" value="Search" />
+        </div>
+    </form>
+</div>
+</div>
+<!-- Show args -->
+{% if args %}
+<div class="args">
+    <pre>{{ args }}</pre>
+</div>
+{% endif %}
+
+<!-- show results as list -->
+<div class="frame">
+    {% if result != None %}
+    <div class="results">
+        <ul class="list">
+            {% for entry in result|slice:":5" %}
+                {% for name in entry|slice:":1" %}
+                    <li>{{ name }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Show map -->
+<div class="frame">
+    <div id="map"></div>
+</div>
+
+{% endblock %}

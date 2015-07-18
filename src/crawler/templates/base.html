@@ -1,0 +1,89 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}ChiCrawl{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/static/style.css' %}" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAl6V4Mo35tEtSNonOAUiHN7XxjSdBcj2c"></script>
+    <script type="text/javascript">
+        // Basic variables
+        var map;
+        var cenMarker;
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+
+        // Starting location
+        var startLat = {{ origin_lat }};
+        var startLon = {{ origin_lon }};
+        var startLocation = new google.maps.LatLng(startLat, startLon);
+
+        // Locations for direction display/array
+        //var lat = [41.799206, 41.7952866107225, 41.7879448, 41.7990076984668, 41.7994714];
+        //var lon = [-87.586212, -87.582101225853, -87.5958939, -87.5875796318054, -87.5943407];
+        var lat = {{ lat_list }};
+        var lon = {{ lon_list }};
+
+        function initialize() {
+            var mapOptions = {
+                zoom: 15,
+                center: startLocation,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false
+            };
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+             
+            // Add center marker to the map
+            cenMarker = new google.maps.Marker({
+                position: startLocation,
+                map: map,
+                animation: google.maps.Animation.DROP
+            });
+            google.maps.event.addListener(cenMarker, 'click', toggleBounce);
+            
+            directionsDisplay.setMap(map);
+            calcRoute();
+        }
+
+        function toggleBounce() {
+            if (cenMarker.getAnimation() != null) {
+                cenMarker.setAnimation(null);
+            }
+            else {
+                cenMarker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+        }
+
+        function calcRoute() {
+            var waypts = [];
+            for (var i = 0; i < lat.length; i++) {
+                waypts.push({
+                    location: new google.maps.LatLng(lat[i], lon[i]),
+                    stopover: true
+                });
+            }
+
+            var request = {
+                origin: startLocation,
+                destination: startLocation,
+                //waypoints: [{location: new google.maps.LatLng(41.799206, -87.586212)}, {location: new google.maps.LatLng(41.7952866107,-87.5821012259)}],
+                waypoints: waypts,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            directionsService.route(request, function(result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(result);
+                }
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+<body>
+
+    {% block body %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana;
+}
+
+/*
+div#header {
+    width: 100%;
+    height: 10%;
+    background: #07131E;
+    margin-top: -22px;
+    margin-bottom: 12px;
+    padding: 0;
+}
+
+div#header h1 {
+    position: relative;
+    color: #FFF;
+    text-align: center;
+    padding-top: 0.3em;
+}
+*/
+
+div.back {
+    margin-top: -32px;
+    height: 500px;
+    background: url("chicago-skyline.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+div.frame {
+    /*width: 100%;
+    height: 100%; 
+    margin-top: -35px;*/
+    /*margin: 2em auto;*/
+    /*
+    background: url("chicago-skyline.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    */
+    margin: 20px;
+}
+
+
+
+
+/*
+fieldset {
+    padding: 3px;
+    margin: 1px;
+    border: 1px solid #ddd;
+}
+
+fieldset legend {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+label {
+    font-size: 12px;
+}
+*/
+table.form {
+    
+    padding-top: 50px;
+    width: 60%;
+    height: 50%;
+    
+    text-align: left;
+    margin: 2em auto;
+}
+
+
+div.args {
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #ffe;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.list {
+    /*border: 1px solid #ddd;*/
+    padding: 0px;
+    margin: 0px;
+}
+
+/*
+table.form input {
+    margin-right: 5px;
+}
+*/
+
+div.submit {
+    margin: 2em auto;
+    width: 40%;
+    height: 1em;
+}
+
+/*
+div.results {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+*/
+/*
+table.tab {
+    border: 1px solid #ddd;
+    padding: 0;
+    margin: 0;
+}
+
+table.tab tr th {
+    padding: 3px;
+    font-size: 12px;
+}
+
+table.tab tr:nth-child(even) {
+    background: #eee;
+}
+*/
+/*
+#mapContainer {
+    padding-top: 100px;
+}
+*/
+
+#map {
+    height: 500px;
+}
+
+
+
